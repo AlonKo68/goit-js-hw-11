@@ -15,7 +15,6 @@ function handlerSearch(evt) {
     const formEvt = evt.currentTarget;
     const queryValue = formEvt.elements.query.value.trim();
 
-
     if (queryValue === '') {
         iziToast.error({
             title: 'Error',

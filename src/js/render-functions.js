@@ -3,8 +3,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const cardContainer = document.querySelector('.card-container');
-
+const cardGallery = document.querySelector('.gallery');
 export function renderImgCard(dataArr) {
     const markupImages = dataArr
         .map(
@@ -30,9 +29,9 @@ export function renderImgCard(dataArr) {
         </li>`
         )
         .join('');
-    cardContainer.innerHTML = markupImages;
+    cardGallery.innerHTML = markupImages;
 
-    const lightbox = new SimpleLightbox('.card-container a', {
+    const lightbox = new SimpleLightbox('.gallery a', {
         captionsData: 'alt',
         captionPosition: 'bottom',
     });

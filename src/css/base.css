@@ -68,7 +68,7 @@ button {
   letter-spacing: 0.04em;
 }
 
-.card-container {
+.gallery {
   width: 1440px;
   display: flex;
   flex-wrap: wrap;
@@ -79,10 +79,6 @@ button {
   height: 200px;
   border: 1px solid #808080;
 }
-.gallery.link {
-}
-.gallery.image {
-}
 .gallery-text-list {
   display: flex;
   justify-content: space-around;
@@ -90,8 +86,6 @@ button {
   padding: 4px 0px;
 }
 
-.gallery-text-item {
-}
 h3,
 p {
   color: #2e2f42;
@@ -109,4 +103,24 @@ p {
   font-weight: 400;
   line-height: 2;
   text-align: center;
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+  border: 5px solid;
+  border-color: blue transparent;
+  border-radius: 50%;
+  display: none;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
