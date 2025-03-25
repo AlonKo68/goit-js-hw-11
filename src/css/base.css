@@ -70,15 +70,23 @@ button {
 
 .gallery {
   width: 1440px;
+  margin: 0 auto;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
   gap: 24px;
 }
-.gallery.item {
+.gallery-item {
   width: 360px;
-  height: 200px;
   border: 1px solid #808080;
+  transition: transform 0.3s;
 }
+.gallery-item:hover {
+  transform: scale(1.04);
+}
+
 .gallery-text-list {
   display: flex;
   justify-content: space-around;
