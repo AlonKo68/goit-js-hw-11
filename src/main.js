@@ -1,12 +1,11 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 
-import { fetchImages, onFetchError, hideSpinner } from './js/pixabay-api';
+import { fetchImages } from './js/pixabay-api';
 import { renderImgCard } from './js/render-functions';
 
 const form = document.querySelector('.form');
+const spinner = document.querySelector('.loader');
 
 form.addEventListener('submit', handlerSearch);
 
@@ -14,6 +13,7 @@ function handlerSearch(evt) {
     evt.preventDefault();
     const formEvt = evt.currentTarget;
     const queryValue = formEvt.elements.query.value.trim();
+    spinner.style.display = 'flex';
 
     if (queryValue === '') {
         iziToast.error({
@@ -23,11 +23,11 @@ function handlerSearch(evt) {
         });
     } else {
         fetchImages(queryValue)
-            .then(data => {
-                if (data.hits.length === 0) {
+            .then(images => {
+                if (images.length === 0) {
                     iziToast.warning({
                         message:
-                            'Sorry, there are no images matching your search query. Please try again!',
+                            'No images found. Try again!!',
                         backgroundColor: '#EF4040',
                         messageColor: '#FFF',
                         iconText: '⚠︎',
@@ -38,12 +38,20 @@ function handlerSearch(evt) {
                         position: 'topRight',
                     });
                 }
-                renderImgCard(data.hits);
+                renderImgCard(images);
+
             })
-            .catch(onFetchError)
+            .catch((error) => {
+                iziToast.error({
+                    title: 'Error',
+                    message:
+                        'Failed to fetch images. Try again later!',
+                    position: 'topRight',
+                });
+            })
             .finally(() => {
                 formEvt.reset();
-                hideSpinner();
+                spinner.style.display = 'none';
             });
     }
 }

@@ -1,11 +1,10 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const cardGallery = document.querySelector('.gallery');
-export function renderImgCard(dataArr) {
-    const markupImages = dataArr
+
+export function renderImgCard(images) {
+    cardGallery.innerHTML = images
         .map(
             ({
                 webformatURL,
@@ -29,12 +28,9 @@ export function renderImgCard(dataArr) {
         </li>`
         )
         .join('');
-    cardGallery.innerHTML = markupImages;
 
     const lightbox = new SimpleLightbox('.gallery a', {
         captionsData: 'alt',
-        captionPosition: 'bottom',
     });
-
     lightbox.refresh();
 }
