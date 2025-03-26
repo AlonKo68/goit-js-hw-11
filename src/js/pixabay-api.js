@@ -1,6 +1,8 @@
 import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const API_KEY = `49502034-df263a01178fc9ef1a0cdcc0b`;
 const BASE_URL = `https://pixabay.com/api/`;
