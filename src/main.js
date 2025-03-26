@@ -1,10 +1,8 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import { fetchImages } from './js/pixabay-api';
-import { renderImgCard } from './js/render-functions';
+import { renderImgCard, clearGallery } from './js/render-functions';
 
 const form = document.querySelector('.form');
 const spinner = document.querySelector('.loader');
@@ -16,6 +14,7 @@ function handlerSearch(evt) {
     const formEvt = evt.currentTarget;
     const queryValue = formEvt.elements.query.value.trim();
     spinner.style.display = 'flex';
+    clearGallery();
 
     if (queryValue === '') {
         iziToast.error({
@@ -23,6 +22,7 @@ function handlerSearch(evt) {
             message: 'Please enter a search term!',
             position: 'topRight',
         });
+        spinner.style.display = 'none';
     } else {
         fetchImages(queryValue)
             .then(images => {

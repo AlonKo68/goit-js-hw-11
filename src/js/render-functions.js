@@ -3,14 +3,14 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const cardGallery = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery');
 
 const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
 });
 
 export function renderImgCard(images) {
-    cardGallery.innerHTML = images
+    gallery.innerHTML = images
         .map(
             ({
                 webformatURL,
@@ -36,4 +36,8 @@ export function renderImgCard(images) {
         .join('');
 
     lightbox.refresh();
+}
+
+export function clearGallery() {
+    gallery.innerHTML = '';
 }
